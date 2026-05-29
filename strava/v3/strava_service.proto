@@ -1214,7 +1214,7 @@ message Primary {
   optional int64 id        = 1;
   optional int64 source    = 2;
   optional string unique_id = 3;
-  optional Urls urls       = 4;
+  map<string, string> urls = 4;
 }
 
 message Route {
@@ -1654,10 +1654,6 @@ message Upload {
   optional string status     = 5;
   // The identifier of the activity this upload resulted into
   optional int64 activity_id = 6;
-}
-
-message Urls {
-  // (empty)
 }
 
 message Waypoint {
