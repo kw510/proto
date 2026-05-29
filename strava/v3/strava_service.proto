@@ -4,6 +4,8 @@ package kw510.strava.v3;
 
 import "google/api/annotations.proto";
 
+import "google/api/httpbody.proto";
+
 // The Swagger Playground is the easiest way to familiarize yourself with the Strava API
 // by submitting HTTP requests and observing the responses before you write any client
 // code. It will show what a response will look like with different endpoints depending
@@ -168,14 +170,14 @@ service StravaService {
   }
 
   // Returns a GPX file of the route. Requires read_all scope for private routes.
-  rpc GetRouteAsGPX(GetRouteAsGPXRequest) returns (GetRouteAsGPXResponse) {
+  rpc GetRouteAsGPX(GetRouteAsGPXRequest) returns (google.api.HttpBody) {
     option (google.api.http) = {
       get: "/api/v3/routes/{id}/export_gpx"
     };
   }
 
   // Returns a TCX file of the route. Requires read_all scope for private routes.
-  rpc GetRouteAsTCX(GetRouteAsTCXRequest) returns (GetRouteAsTCXResponse) {
+  rpc GetRouteAsTCX(GetRouteAsTCXRequest) returns (google.api.HttpBody) {
     option (google.api.http) = {
       get: "/api/v3/routes/{id}/export_tcx"
     };
@@ -459,7 +461,7 @@ message CreateActivityRequest {
 
 // Upload Activity
 message CreateUploadRequest {
-  optional string file       = 1;
+  optional bytes file        = 1;
   optional string name       = 2;
   optional string description = 3;
   optional string trainer    = 4;
@@ -1006,17 +1008,9 @@ message GetRouteAsGPXRequest {
   int64 id = 1;
 }
 
-message GetRouteAsGPXResponse {
-  // (empty)
-}
-
 // Export Route TCX
 message GetRouteAsTCXRequest {
   int64 id = 1;
-}
-
-message GetRouteAsTCXResponse {
-  // (empty)
 }
 
 // Get Route
