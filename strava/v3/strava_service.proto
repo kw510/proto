@@ -879,7 +879,7 @@ message GetClubActivitiesByIdRequest {
 }
 
 message GetClubActivitiesByIdResponse {
-  // (empty)
+  repeated ClubActivity items = 1;
 }
 
 // List Club Administrators
@@ -890,7 +890,7 @@ message GetClubAdminsByIdRequest {
 }
 
 message GetClubAdminsByIdResponse {
-  // (empty)
+  repeated SummaryAthlete items = 1;
 }
 
 // Get Club
@@ -906,7 +906,7 @@ message GetClubMembersByIdRequest {
 }
 
 message GetClubMembersByIdResponse {
-  // (empty)
+  repeated ClubAthlete items = 1;
 }
 
 // List Activity Comments
@@ -919,7 +919,7 @@ message GetCommentsByActivityIdRequest {
 }
 
 message GetCommentsByActivityIdResponse {
-  // (empty)
+  repeated Comment items = 1;
 }
 
 // List Segment Efforts
@@ -931,7 +931,7 @@ message GetEffortsBySegmentIdRequest {
 }
 
 message GetEffortsBySegmentIdResponse {
-  // (empty)
+  repeated DetailedSegmentEffort items = 1;
 }
 
 // Get Equipment
@@ -947,7 +947,7 @@ message GetKudoersByActivityIdRequest {
 }
 
 message GetKudoersByActivityIdResponse {
-  // (empty)
+  repeated SummaryAthlete items = 1;
 }
 
 // List Activity Laps
@@ -956,7 +956,7 @@ message GetLapsByActivityIdRequest {
 }
 
 message GetLapsByActivityIdResponse {
-  // (empty)
+  repeated Lap items = 1;
 }
 
 // List Athlete Activities
@@ -968,7 +968,7 @@ message GetLoggedInAthleteActivitiesRequest {
 }
 
 message GetLoggedInAthleteActivitiesResponse {
-  // (empty)
+  repeated SummaryActivity items = 1;
 }
 
 // List Athlete Clubs
@@ -978,7 +978,7 @@ message GetLoggedInAthleteClubsRequest {
 }
 
 message GetLoggedInAthleteClubsResponse {
-  // (empty)
+  repeated SummaryClub items = 1;
 }
 
 // Get Authenticated Athlete
@@ -993,7 +993,7 @@ message GetLoggedInAthleteStarredSegmentsRequest {
 }
 
 message GetLoggedInAthleteStarredSegmentsResponse {
-  // (empty)
+  repeated SummarySegment items = 1;
 }
 
 // Get Zones
@@ -1031,7 +1031,7 @@ message GetRoutesByAthleteIdRequest {
 }
 
 message GetRoutesByAthleteIdResponse {
-  // (empty)
+  repeated Route items = 1;
 }
 
 // Get Route Streams
@@ -1079,7 +1079,7 @@ message GetZonesByActivityIdRequest {
 }
 
 message GetZonesByActivityIdResponse {
-  // (empty)
+  repeated ActivityZone items = 1;
 }
 
 message HeartrateStream {
