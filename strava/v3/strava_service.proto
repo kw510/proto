@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package kw510.strava.v3;
+package kw510.strava.api.v3;
 
 import "google/api/annotations.proto";
 
@@ -265,6 +265,21 @@ service StravaService {
   rpc StarSegment(StarSegmentRequest) returns (DetailedSegment) {
     option (google.api.http) = {
       put: "/api/v3/segments/{id}/starred"
+      body: "*"
+    };
+  }
+
+  // OAuth 2.0 authorization endpoint (RFC 6749 section 3.1).
+  rpc StravaOauthAuthorize(OAuth2AuthorizeRequest) returns (OAuth2AuthorizeResponse) {
+    option (google.api.http) = {
+      get: "/api/v3/oauth/authorize"
+    };
+  }
+
+  // OAuth 2.0 token endpoint (RFC 6749 section 3.2).
+  rpc StravaOauthToken(OAuth2TokenRequest) returns (OAuth2TokenResponse) {
+    option (google.api.http) = {
+      post: "/api/v3/oauth/token"
       body: "*"
     };
   }
@@ -1178,6 +1193,45 @@ message MovingStream {
   optional string series_type = 3;
   // The sequence of moving values for this stream, as boolean values
   repeated bool data          = 4;
+}
+
+// OAuth 2.0 authorization endpoint query parameters (RFC 6749 section 4.1.1).
+message OAuth2AuthorizeRequest {
+  // Must be code.
+  string response_type        = 1;
+  string client_id            = 2;
+  optional string redirect_uri = 3;
+  optional string scope       = 4;
+  optional string state       = 5;
+}
+
+// OAuth 2.0 authorization redirect query parameters (RFC 6749 section 4.1.2).
+message OAuth2AuthorizeResponse {
+  optional string code             = 1;
+  optional string scope            = 2;
+  optional string state            = 3;
+  optional string error            = 4;
+  optional string error_description = 5;
+}
+
+// OAuth 2.0 token endpoint request parameters (RFC 6749 section 4.1.3, 6).
+message OAuth2TokenRequest {
+  string grant_type            = 1;
+  optional string client_id    = 2;
+  optional string client_secret = 3;
+  optional string code         = 4;
+  optional string redirect_uri = 5;
+  optional string refresh_token = 6;
+  optional string scope        = 7;
+}
+
+// OAuth 2.0 token endpoint response (RFC 6749 section 5.1).
+message OAuth2TokenResponse {
+  optional string access_token = 1;
+  optional string token_type   = 2;
+  optional int64 expires_in    = 3;
+  optional string refresh_token = 4;
+  optional string scope        = 5;
 }
 
 message PhotosSummary {
