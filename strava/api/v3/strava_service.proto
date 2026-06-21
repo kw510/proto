@@ -311,6 +311,221 @@ service StravaService {
   }
 }
 
+// --- Enums ---
+
+enum ActivityZoneType {
+  ACTIVITY_ZONE_TYPE_UNSPECIFIED = 0;
+  ACTIVITY_ZONE_TYPE_HEARTRATE = 1; // heartrate
+  ACTIVITY_ZONE_TYPE_POWER = 2; // power
+}
+
+// The level of detail (sampling) in which this stream was returned
+enum BaseStreamResolution {
+  BASE_STREAM_RESOLUTION_UNSPECIFIED = 0;
+  BASE_STREAM_RESOLUTION_LOW = 1; // low
+  BASE_STREAM_RESOLUTION_MEDIUM = 2; // medium
+  BASE_STREAM_RESOLUTION_HIGH = 3; // high
+}
+
+// The base series used in the case the stream was downsampled
+enum BaseStreamSeriesType {
+  BASE_STREAM_SERIES_TYPE_UNSPECIFIED = 0;
+  BASE_STREAM_SERIES_TYPE_DISTANCE = 1; // distance
+  BASE_STREAM_SERIES_TYPE_TIME = 2; // time
+}
+
+enum CreateUploadRequestDataType {
+  CREATE_UPLOAD_REQUEST_DATA_TYPE_UNSPECIFIED = 0;
+  CREATE_UPLOAD_REQUEST_DATA_TYPE_FIT = 1; // fit
+  CREATE_UPLOAD_REQUEST_DATA_TYPE_FIT_GZ = 2; // fit.gz
+  CREATE_UPLOAD_REQUEST_DATA_TYPE_TCX = 3; // tcx
+  CREATE_UPLOAD_REQUEST_DATA_TYPE_TCX_GZ = 4; // tcx.gz
+  CREATE_UPLOAD_REQUEST_DATA_TYPE_GPX = 5; // gpx
+  CREATE_UPLOAD_REQUEST_DATA_TYPE_GPX_GZ = 6; // gpx.gz
+}
+
+// An enumeration of the sport types an activity may have. Distinct from ActivityType in
+// that it has new types (e.g. MountainBikeRide)
+enum DetailedActivitySportType {
+  DETAILED_ACTIVITY_SPORT_TYPE_UNSPECIFIED = 0;
+  DETAILED_ACTIVITY_SPORT_TYPE_ALPINESKI = 1; // AlpineSki
+  DETAILED_ACTIVITY_SPORT_TYPE_BACKCOUNTRYSKI = 2; // BackcountrySki
+  DETAILED_ACTIVITY_SPORT_TYPE_BADMINTON = 3; // Badminton
+  DETAILED_ACTIVITY_SPORT_TYPE_BASKETBALL = 4; // Basketball
+  DETAILED_ACTIVITY_SPORT_TYPE_CANOEING = 5; // Canoeing
+  DETAILED_ACTIVITY_SPORT_TYPE_CRICKET = 6; // Cricket
+  DETAILED_ACTIVITY_SPORT_TYPE_CROSSFIT = 7; // Crossfit
+  DETAILED_ACTIVITY_SPORT_TYPE_DANCE = 8; // Dance
+  DETAILED_ACTIVITY_SPORT_TYPE_EBIKERIDE = 9; // EBikeRide
+  DETAILED_ACTIVITY_SPORT_TYPE_ELLIPTICAL = 10; // Elliptical
+  DETAILED_ACTIVITY_SPORT_TYPE_EMOUNTAINBIKERIDE = 11; // EMountainBikeRide
+  DETAILED_ACTIVITY_SPORT_TYPE_GOLF = 12; // Golf
+  DETAILED_ACTIVITY_SPORT_TYPE_GRAVELRIDE = 13; // GravelRide
+  DETAILED_ACTIVITY_SPORT_TYPE_HANDCYCLE = 14; // Handcycle
+  DETAILED_ACTIVITY_SPORT_TYPE_HIGHINTENSITYINTERVALTRAINING = 15; // HighIntensityIntervalTraining
+  DETAILED_ACTIVITY_SPORT_TYPE_HIKE = 16; // Hike
+  DETAILED_ACTIVITY_SPORT_TYPE_ICESKATE = 17; // IceSkate
+  DETAILED_ACTIVITY_SPORT_TYPE_INLINESKATE = 18; // InlineSkate
+  DETAILED_ACTIVITY_SPORT_TYPE_KAYAKING = 19; // Kayaking
+  DETAILED_ACTIVITY_SPORT_TYPE_KITESURF = 20; // Kitesurf
+  DETAILED_ACTIVITY_SPORT_TYPE_MOUNTAINBIKERIDE = 21; // MountainBikeRide
+  DETAILED_ACTIVITY_SPORT_TYPE_NORDICSKI = 22; // NordicSki
+  DETAILED_ACTIVITY_SPORT_TYPE_PADEL = 23; // Padel
+  DETAILED_ACTIVITY_SPORT_TYPE_PHYSICALTHERAPY = 24; // PhysicalTherapy
+  DETAILED_ACTIVITY_SPORT_TYPE_PICKLEBALL = 25; // Pickleball
+  DETAILED_ACTIVITY_SPORT_TYPE_PILATES = 26; // Pilates
+  DETAILED_ACTIVITY_SPORT_TYPE_RACQUETBALL = 27; // Racquetball
+  DETAILED_ACTIVITY_SPORT_TYPE_RIDE = 28; // Ride
+  DETAILED_ACTIVITY_SPORT_TYPE_ROCKCLIMBING = 29; // RockClimbing
+  DETAILED_ACTIVITY_SPORT_TYPE_ROLLERSKI = 30; // RollerSki
+  DETAILED_ACTIVITY_SPORT_TYPE_ROWING = 31; // Rowing
+  DETAILED_ACTIVITY_SPORT_TYPE_RUN = 32; // Run
+  DETAILED_ACTIVITY_SPORT_TYPE_SAIL = 33; // Sail
+  DETAILED_ACTIVITY_SPORT_TYPE_SKATEBOARD = 34; // Skateboard
+  DETAILED_ACTIVITY_SPORT_TYPE_SNOWBOARD = 35; // Snowboard
+  DETAILED_ACTIVITY_SPORT_TYPE_SNOWSHOE = 36; // Snowshoe
+  DETAILED_ACTIVITY_SPORT_TYPE_SOCCER = 37; // Soccer
+  DETAILED_ACTIVITY_SPORT_TYPE_SQUASH = 38; // Squash
+  DETAILED_ACTIVITY_SPORT_TYPE_STAIRSTEPPER = 39; // StairStepper
+  DETAILED_ACTIVITY_SPORT_TYPE_STANDUPPADDLING = 40; // StandUpPaddling
+  DETAILED_ACTIVITY_SPORT_TYPE_SURFING = 41; // Surfing
+  DETAILED_ACTIVITY_SPORT_TYPE_SWIM = 42; // Swim
+  DETAILED_ACTIVITY_SPORT_TYPE_TABLETENNIS = 43; // TableTennis
+  DETAILED_ACTIVITY_SPORT_TYPE_TENNIS = 44; // Tennis
+  DETAILED_ACTIVITY_SPORT_TYPE_TRAILRUN = 45; // TrailRun
+  DETAILED_ACTIVITY_SPORT_TYPE_VELOMOBILE = 46; // Velomobile
+  DETAILED_ACTIVITY_SPORT_TYPE_VIRTUALRIDE = 47; // VirtualRide
+  DETAILED_ACTIVITY_SPORT_TYPE_VIRTUALROW = 48; // VirtualRow
+  DETAILED_ACTIVITY_SPORT_TYPE_VIRTUALRUN = 49; // VirtualRun
+  DETAILED_ACTIVITY_SPORT_TYPE_VOLLEYBALL = 50; // Volleyball
+  DETAILED_ACTIVITY_SPORT_TYPE_WALK = 51; // Walk
+  DETAILED_ACTIVITY_SPORT_TYPE_WEIGHTTRAINING = 52; // WeightTraining
+  DETAILED_ACTIVITY_SPORT_TYPE_WHEELCHAIR = 53; // Wheelchair
+  DETAILED_ACTIVITY_SPORT_TYPE_WINDSURF = 54; // Windsurf
+  DETAILED_ACTIVITY_SPORT_TYPE_WORKOUT = 55; // Workout
+  DETAILED_ACTIVITY_SPORT_TYPE_YOGA = 56; // Yoga
+}
+
+// The athlete's preferred unit system.
+enum DetailedAthleteMeasurementPreference {
+  DETAILED_ATHLETE_MEASUREMENT_PREFERENCE_UNSPECIFIED = 0;
+  DETAILED_ATHLETE_MEASUREMENT_PREFERENCE_FEET = 1; // feet
+  DETAILED_ATHLETE_MEASUREMENT_PREFERENCE_METERS = 2; // meters
+}
+
+// The athlete's sex.
+enum DetailedAthleteSex {
+  DETAILED_ATHLETE_SEX_UNSPECIFIED = 0;
+  DETAILED_ATHLETE_SEX_M = 1; // M
+  DETAILED_ATHLETE_SEX_F = 2; // F
+}
+
+// The membership status of the logged-in athlete.
+enum DetailedClubMembership {
+  DETAILED_CLUB_MEMBERSHIP_UNSPECIFIED = 0;
+  DETAILED_CLUB_MEMBERSHIP_MEMBER = 1; // member
+  DETAILED_CLUB_MEMBERSHIP_PENDING = 2; // pending
+}
+
+enum DetailedSegmentActivityType {
+  DETAILED_SEGMENT_ACTIVITY_TYPE_UNSPECIFIED = 0;
+  DETAILED_SEGMENT_ACTIVITY_TYPE_RIDE = 1; // Ride
+  DETAILED_SEGMENT_ACTIVITY_TYPE_RUN = 2; // Run
+}
+
+// The description for the category of the climb
+enum ExplorerSegmentClimbCategoryDesc {
+  EXPLORER_SEGMENT_CLIMB_CATEGORY_DESC_UNSPECIFIED = 0;
+  EXPLORER_SEGMENT_CLIMB_CATEGORY_DESC_NC = 1; // NC
+  EXPLORER_SEGMENT_CLIMB_CATEGORY_DESC_VALUE_2 = 2; // 4
+  EXPLORER_SEGMENT_CLIMB_CATEGORY_DESC_VALUE_3 = 3; // 3
+  EXPLORER_SEGMENT_CLIMB_CATEGORY_DESC_VALUE_4 = 4; // 2
+  EXPLORER_SEGMENT_CLIMB_CATEGORY_DESC_VALUE_5 = 5; // 1
+  EXPLORER_SEGMENT_CLIMB_CATEGORY_DESC_HC = 6; // HC
+}
+
+enum ExploreSegmentsRequestActivityType {
+  EXPLORE_SEGMENTS_REQUEST_ACTIVITY_TYPE_UNSPECIFIED = 0;
+  EXPLORE_SEGMENTS_REQUEST_ACTIVITY_TYPE_RUNNING = 1; // running
+  EXPLORE_SEGMENTS_REQUEST_ACTIVITY_TYPE_RIDING = 2; // riding
+}
+
+enum GetActivityStreamsRequestKeys {
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_UNSPECIFIED = 0;
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_TIME = 1; // time
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_DISTANCE = 2; // distance
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_LATLNG = 3; // latlng
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_ALTITUDE = 4; // altitude
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_VELOCITY_SMOOTH = 5; // velocity_smooth
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_HEARTRATE = 6; // heartrate
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_CADENCE = 7; // cadence
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_WATTS = 8; // watts
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_TEMP = 9; // temp
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_MOVING = 10; // moving
+  GET_ACTIVITY_STREAMS_REQUEST_KEYS_GRADE_SMOOTH = 11; // grade_smooth
+}
+
+enum GetSegmentStreamsRequestKeys {
+  GET_SEGMENT_STREAMS_REQUEST_KEYS_UNSPECIFIED = 0;
+  GET_SEGMENT_STREAMS_REQUEST_KEYS_DISTANCE = 1; // distance
+  GET_SEGMENT_STREAMS_REQUEST_KEYS_LATLNG = 2; // latlng
+  GET_SEGMENT_STREAMS_REQUEST_KEYS_ALTITUDE = 3; // altitude
+}
+
+// An enumeration of the types an activity may have. Note that this enumeration does not
+// include new sport types (e.g. MountainBikeRide, EMountainBikeRide), activities with
+// these sport types will have the corresponding activity type (e.g. Ride for
+// MountainBikeRide, EBikeRide for EMountainBikeRide)
+enum SummaryClubActivityTypes {
+  SUMMARY_CLUB_ACTIVITY_TYPES_UNSPECIFIED = 0;
+  SUMMARY_CLUB_ACTIVITY_TYPES_ALPINESKI = 1; // AlpineSki
+  SUMMARY_CLUB_ACTIVITY_TYPES_BACKCOUNTRYSKI = 2; // BackcountrySki
+  SUMMARY_CLUB_ACTIVITY_TYPES_CANOEING = 3; // Canoeing
+  SUMMARY_CLUB_ACTIVITY_TYPES_CROSSFIT = 4; // Crossfit
+  SUMMARY_CLUB_ACTIVITY_TYPES_EBIKERIDE = 5; // EBikeRide
+  SUMMARY_CLUB_ACTIVITY_TYPES_ELLIPTICAL = 6; // Elliptical
+  SUMMARY_CLUB_ACTIVITY_TYPES_GOLF = 7; // Golf
+  SUMMARY_CLUB_ACTIVITY_TYPES_HANDCYCLE = 8; // Handcycle
+  SUMMARY_CLUB_ACTIVITY_TYPES_HIKE = 9; // Hike
+  SUMMARY_CLUB_ACTIVITY_TYPES_ICESKATE = 10; // IceSkate
+  SUMMARY_CLUB_ACTIVITY_TYPES_INLINESKATE = 11; // InlineSkate
+  SUMMARY_CLUB_ACTIVITY_TYPES_KAYAKING = 12; // Kayaking
+  SUMMARY_CLUB_ACTIVITY_TYPES_KITESURF = 13; // Kitesurf
+  SUMMARY_CLUB_ACTIVITY_TYPES_NORDICSKI = 14; // NordicSki
+  SUMMARY_CLUB_ACTIVITY_TYPES_RIDE = 15; // Ride
+  SUMMARY_CLUB_ACTIVITY_TYPES_ROCKCLIMBING = 16; // RockClimbing
+  SUMMARY_CLUB_ACTIVITY_TYPES_ROLLERSKI = 17; // RollerSki
+  SUMMARY_CLUB_ACTIVITY_TYPES_ROWING = 18; // Rowing
+  SUMMARY_CLUB_ACTIVITY_TYPES_RUN = 19; // Run
+  SUMMARY_CLUB_ACTIVITY_TYPES_SAIL = 20; // Sail
+  SUMMARY_CLUB_ACTIVITY_TYPES_SKATEBOARD = 21; // Skateboard
+  SUMMARY_CLUB_ACTIVITY_TYPES_SNOWBOARD = 22; // Snowboard
+  SUMMARY_CLUB_ACTIVITY_TYPES_SNOWSHOE = 23; // Snowshoe
+  SUMMARY_CLUB_ACTIVITY_TYPES_SOCCER = 24; // Soccer
+  SUMMARY_CLUB_ACTIVITY_TYPES_STAIRSTEPPER = 25; // StairStepper
+  SUMMARY_CLUB_ACTIVITY_TYPES_STANDUPPADDLING = 26; // StandUpPaddling
+  SUMMARY_CLUB_ACTIVITY_TYPES_SURFING = 27; // Surfing
+  SUMMARY_CLUB_ACTIVITY_TYPES_SWIM = 28; // Swim
+  SUMMARY_CLUB_ACTIVITY_TYPES_VELOMOBILE = 29; // Velomobile
+  SUMMARY_CLUB_ACTIVITY_TYPES_VIRTUALRIDE = 30; // VirtualRide
+  SUMMARY_CLUB_ACTIVITY_TYPES_VIRTUALRUN = 31; // VirtualRun
+  SUMMARY_CLUB_ACTIVITY_TYPES_WALK = 32; // Walk
+  SUMMARY_CLUB_ACTIVITY_TYPES_WEIGHTTRAINING = 33; // WeightTraining
+  SUMMARY_CLUB_ACTIVITY_TYPES_WHEELCHAIR = 34; // Wheelchair
+  SUMMARY_CLUB_ACTIVITY_TYPES_WINDSURF = 35; // Windsurf
+  SUMMARY_CLUB_ACTIVITY_TYPES_WORKOUT = 36; // Workout
+  SUMMARY_CLUB_ACTIVITY_TYPES_YOGA = 37; // Yoga
+}
+
+// Deprecated. Prefer to use activity_types.
+enum SummaryClubSportType {
+  SUMMARY_CLUB_SPORT_TYPE_UNSPECIFIED = 0;
+  SUMMARY_CLUB_SPORT_TYPE_CYCLING = 1; // cycling
+  SUMMARY_CLUB_SPORT_TYPE_RUNNING = 2; // running
+  SUMMARY_CLUB_SPORT_TYPE_TRIATHLON = 3; // triathlon
+  SUMMARY_CLUB_SPORT_TYPE_OTHER = 4; // other
+}
+
 // --- Messages ---
 
 // A set of rolled-up statistics and totals for an athlete
@@ -367,7 +582,7 @@ message ActivityZone {
   optional int64 score                        = 1;
   // Stores the exclusive ranges representing zones and the time spent in each.
   repeated TimedZoneRange distribution_buckets = 2;
-  optional string type                        = 3;
+  optional ActivityZoneType type              = 3;
   optional bool sensor_based                  = 4;
   optional int64 points                       = 5;
   optional bool custom_zones                  = 6;
@@ -376,57 +591,57 @@ message ActivityZone {
 
 message AltitudeStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of altitude values for this stream, in meters
-  repeated float data         = 4;
+  repeated float data                      = 4;
 }
 
 message BaseStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
 }
 
 message CadenceStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of cadence values for this stream, in rotations per minute
-  repeated int64 data         = 4;
+  repeated int64 data                      = 4;
 }
 
 message ClubActivity {
-  optional MetaAthlete athlete       = 1;
+  optional MetaAthlete athlete                 = 1;
   // The name of the activity
-  optional string name               = 2;
+  optional string name                         = 2;
   // The activity's distance, in meters
-  optional float distance            = 3;
+  optional float distance                      = 3;
   // The activity's moving time, in seconds
-  optional int64 moving_time         = 4;
+  optional int64 moving_time                   = 4;
   // The activity's elapsed time, in seconds
-  optional int64 elapsed_time        = 5;
+  optional int64 elapsed_time                  = 5;
   // The activity's total elevation gain.
-  optional float total_elevation_gain = 6;
+  optional float total_elevation_gain          = 6;
   // An enumeration of the types an activity may have. Note that this enumeration does
   // not include new sport types (e.g. MountainBikeRide, EMountainBikeRide), activities
   // with these sport types will have the corresponding activity type (e.g. Ride for
   // MountainBikeRide, EBikeRide for EMountainBikeRide)
-  optional string type               = 7;
+  optional SummaryClubActivityTypes type       = 7;
   // An enumeration of the sport types an activity may have. Distinct from ActivityType
   // in that it has new types (e.g. MountainBikeRide)
-  optional string sport_type         = 8;
+  optional DetailedActivitySportType sport_type = 8;
   // The activity's workout type
-  optional int64 workout_type        = 9;
+  optional int64 workout_type                  = 9;
 }
 
 message ClubAnnouncement {
@@ -484,13 +699,13 @@ message CreateActivityRequest {
 
 // Upload Activity
 message CreateUploadRequest {
-  optional bytes file        = 1;
-  optional string name       = 2;
-  optional string description = 3;
-  optional string trainer    = 4;
-  optional string commute    = 5;
-  optional string data_type  = 6;
-  optional string external_id = 7;
+  optional bytes file                           = 1;
+  optional string name                          = 2;
+  optional string description                   = 3;
+  optional string trainer                       = 4;
+  optional string commute                       = 5;
+  optional CreateUploadRequestDataType data_type = 6;
+  optional string external_id                   = 7;
 }
 
 message DetailedActivity {
@@ -519,10 +734,10 @@ message DetailedActivity {
   // not include new sport types (e.g. MountainBikeRide, EMountainBikeRide), activities
   // with these sport types will have the corresponding activity type (e.g. Ride for
   // MountainBikeRide, EBikeRide for EMountainBikeRide)
-  optional string type                          = 12;
+  optional SummaryClubActivityTypes type        = 12;
   // An enumeration of the sport types an activity may have. Distinct from ActivityType
   // in that it has new types (e.g. MountainBikeRide)
-  optional string sport_type                    = 13;
+  optional DetailedActivitySportType sport_type = 13;
   // The time at which the activity was started.
   optional string start_date                    = 14;
   // The time at which the activity was started in the local timezone.
@@ -603,95 +818,95 @@ message DetailedActivity {
 
 message DetailedAthlete {
   // The unique identifier of the athlete
-  optional int64 id                     = 1;
+  optional int64 id                                                   = 1;
   // Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 ->
   // "summary", 3 -> "detail"
-  optional int64 resource_state         = 2;
+  optional int64 resource_state                                       = 2;
   // The athlete's first name.
-  optional string firstname             = 3;
+  optional string firstname                                           = 3;
   // The athlete's last name.
-  optional string lastname              = 4;
+  optional string lastname                                            = 4;
   // URL to a 62x62 pixel profile picture.
-  optional string profile_medium        = 5;
+  optional string profile_medium                                      = 5;
   // URL to a 124x124 pixel profile picture.
-  optional string profile               = 6;
+  optional string profile                                             = 6;
   // The athlete's city.
-  optional string city                  = 7;
+  optional string city                                                = 7;
   // The athlete's state or geographical region.
-  optional string state                 = 8;
+  optional string state                                               = 8;
   // The athlete's country.
-  optional string country               = 9;
+  optional string country                                             = 9;
   // The athlete's sex.
-  optional string sex                   = 10;
+  optional DetailedAthleteSex sex                                     = 10;
   // Deprecated. Use summit field instead. Whether the athlete has any Summit
   // subscription.
-  optional bool premium                 = 11;
+  optional bool premium                                               = 11;
   // Whether the athlete has any Summit subscription.
-  optional bool summit                  = 12;
+  optional bool summit                                                = 12;
   // The time at which the athlete was created.
-  optional string created_at            = 13;
+  optional string created_at                                          = 13;
   // The time at which the athlete was last updated.
-  optional string updated_at            = 14;
+  optional string updated_at                                          = 14;
   // The athlete's follower count.
-  optional int64 follower_count         = 15;
+  optional int64 follower_count                                       = 15;
   // The athlete's friend count.
-  optional int64 friend_count           = 16;
+  optional int64 friend_count                                         = 16;
   // The athlete's preferred unit system.
-  optional string measurement_preference = 17;
+  optional DetailedAthleteMeasurementPreference measurement_preference = 17;
   // The athlete's FTP (Functional Threshold Power).
-  optional int64 ftp                    = 18;
+  optional int64 ftp                                                  = 18;
   // The athlete's weight.
-  optional float weight                 = 19;
+  optional float weight                                               = 19;
   // The athlete's clubs.
-  repeated SummaryClub clubs            = 20;
+  repeated SummaryClub clubs                                          = 20;
   // The athlete's bikes.
-  repeated SummaryGear bikes            = 21;
+  repeated SummaryGear bikes                                          = 21;
   // The athlete's shoes.
-  repeated SummaryGear shoes            = 22;
+  repeated SummaryGear shoes                                          = 22;
 }
 
 message DetailedClub {
   // The club's unique identifier.
-  optional int64 id                = 1;
+  optional int64 id                               = 1;
   // Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 ->
   // "summary", 3 -> "detail"
-  optional int64 resource_state    = 2;
+  optional int64 resource_state                   = 2;
   // The club's name.
-  optional string name             = 3;
+  optional string name                            = 3;
   // URL to a 60x60 pixel profile picture.
-  optional string profile_medium   = 4;
+  optional string profile_medium                  = 4;
   // URL to a ~1185x580 pixel cover photo.
-  optional string cover_photo      = 5;
+  optional string cover_photo                     = 5;
   // URL to a ~360x176  pixel cover photo.
-  optional string cover_photo_small = 6;
+  optional string cover_photo_small               = 6;
   // Deprecated. Prefer to use activity_types.
-  optional string sport_type       = 7;
+  optional SummaryClubSportType sport_type        = 7;
   // The activity types that count for a club. This takes precedence over sport_type.
-  repeated string activity_types   = 8;
+  repeated SummaryClubActivityTypes activity_types = 8;
   // The club's city.
-  optional string city             = 9;
+  optional string city                            = 9;
   // The club's state or geographical region.
-  optional string state            = 10;
+  optional string state                           = 10;
   // The club's country.
-  optional string country          = 11;
+  optional string country                         = 11;
   // Whether the club is private.
-  optional bool private            = 12;
+  optional bool private                           = 12;
   // The club's member count.
-  optional int64 member_count      = 13;
+  optional int64 member_count                     = 13;
   // Whether the club is featured or not.
-  optional bool featured           = 14;
+  optional bool featured                          = 14;
   // Whether the club is verified or not.
-  optional bool verified           = 15;
+  optional bool verified                          = 15;
   // The club's vanity URL.
-  optional string url              = 16;
+  optional string url                             = 16;
   // The membership status of the logged-in athlete.
-  optional string membership       = 17;
+  optional DetailedClubMembership membership      = 17;
   // Whether the currently logged-in athlete is an administrator of this club.
-  optional bool admin              = 18;
+  optional bool admin                             = 18;
   // Whether the currently logged-in athlete is the owner of this club.
-  optional bool owner              = 19;
+  optional bool owner                             = 19;
   // The number of athletes in the club that the logged-in athlete follows.
-  optional int64 following_count   = 20;
+  optional int64 following_count                  = 20;
 }
 
 message DetailedGear {
@@ -721,7 +936,7 @@ message DetailedSegment {
   optional int64 id                                  = 1;
   // The name of this segment
   optional string name                               = 2;
-  optional string activity_type                      = 3;
+  optional DetailedSegmentActivityType activity_type = 3;
   // The segment's distance, in meters
   optional float distance                            = 4;
   // The segment's average grade, in percents
@@ -817,13 +1032,13 @@ message DetailedSegmentEffort {
 
 message DistanceStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of distance values for this stream, in meters
-  repeated float data         = 4;
+  repeated float data                      = 4;
 }
 
 message Error {
@@ -842,37 +1057,37 @@ message ExplorerResponse {
 
 message ExplorerSegment {
   // The unique identifier of this segment
-  optional int64 id                  = 1;
+  optional int64 id                                            = 1;
   // The name of this segment
-  optional string name               = 2;
+  optional string name                                         = 2;
   // The category of the climb [0, 5]. Higher is harder ie. 5 is Hors catégorie, 0 is
   // uncategorized in climb_category. If climb_category = 5, climb_category_desc = HC.
   // If climb_category = 2, climb_category_desc = 3.
-  optional int64 climb_category      = 3;
+  optional int64 climb_category                                = 3;
   // The description for the category of the climb
-  optional string climb_category_desc = 4;
+  optional ExplorerSegmentClimbCategoryDesc climb_category_desc = 4;
   // The segment's average grade, in percents
-  optional float avg_grade           = 5;
+  optional float avg_grade                                     = 5;
   // A pair of latitude/longitude coordinates, represented as an array of 2 floating
   // point numbers.
-  repeated float start_latlng        = 6;
+  repeated float start_latlng                                  = 6;
   // A pair of latitude/longitude coordinates, represented as an array of 2 floating
   // point numbers.
-  repeated float end_latlng          = 7;
+  repeated float end_latlng                                    = 7;
   // The segments's evelation difference, in meters
-  optional float elev_difference     = 8;
+  optional float elev_difference                               = 8;
   // The segment's distance, in meters
-  optional float distance            = 9;
+  optional float distance                                      = 9;
   // The polyline of the segment
-  optional string points             = 10;
+  optional string points                                       = 10;
 }
 
 // Explore segments
 message ExploreSegmentsRequest {
-  repeated float bounds        = 1;
-  optional string activity_type = 2;
-  optional int64 min_cat       = 3;
-  optional int64 max_cat       = 4;
+  repeated float bounds                                    = 1;
+  optional ExploreSegmentsRequestActivityType activity_type = 2;
+  optional int64 min_cat                                   = 3;
+  optional int64 max_cat                                   = 4;
 }
 
 // Encapsulates the errors that may be returned from the API.
@@ -891,9 +1106,9 @@ message GetActivityByIdRequest {
 
 // Get Activity Streams
 message GetActivityStreamsRequest {
-  int64 id            = 1;
-  repeated string keys = 2;
-  bool key_by_type    = 3;
+  int64 id                                   = 1;
+  repeated GetActivityStreamsRequestKeys keys = 2;
+  bool key_by_type                           = 3;
 }
 
 // List Club Activities
@@ -1068,16 +1283,16 @@ message GetSegmentEffortByIdRequest {
 
 // Get Segment Effort Streams
 message GetSegmentEffortStreamsRequest {
-  int64 id            = 1;
-  repeated string keys = 2;
-  bool key_by_type    = 3;
+  int64 id                                   = 1;
+  repeated GetActivityStreamsRequestKeys keys = 2;
+  bool key_by_type                           = 3;
 }
 
 // Get Segment Streams
 message GetSegmentStreamsRequest {
-  int64 id            = 1;
-  repeated string keys = 2;
-  bool key_by_type    = 3;
+  int64 id                                  = 1;
+  repeated GetSegmentStreamsRequestKeys keys = 2;
+  bool key_by_type                          = 3;
 }
 
 // Get Athlete Stats
@@ -1101,13 +1316,13 @@ message GetZonesByActivityIdResponse {
 
 message HeartrateStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of heart rate values for this stream, in beats per minute
-  repeated int64 data         = 4;
+  repeated int64 data                      = 4;
 }
 
 message HeartRateZoneRanges {
@@ -1154,22 +1369,22 @@ message Lap {
 
 message LatLngStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of lat/long values for this stream
-  repeated float data         = 4;
+  repeated float data                      = 4;
 }
 
 message MembershipApplication {
   // Whether the application for membership was successfully submitted
-  optional bool success     = 1;
+  optional bool success                     = 1;
   // Whether the membership is currently active
-  optional bool active      = 2;
+  optional bool active                      = 2;
   // The membership status of this application
-  optional string membership = 3;
+  optional DetailedClubMembership membership = 3;
 }
 
 message MetaActivity {
@@ -1194,13 +1409,13 @@ message MetaClub {
 
 message MovingStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of moving values for this stream, as boolean values
-  repeated bool data          = 4;
+  repeated bool data                       = 4;
 }
 
 // OAuth 2.0 authorization endpoint query parameters (RFC 6749 section 4.1.1).
@@ -1269,13 +1484,13 @@ message PolylineMap {
 
 message PowerStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of power values for this stream, in watts
-  repeated int64 data         = 4;
+  repeated int64 data                      = 4;
 }
 
 message PowerZoneRanges {
@@ -1329,24 +1544,24 @@ message Route {
 
 message SmoothGradeStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of grade values for this stream, as percents of a grade
-  repeated float data         = 4;
+  repeated float data                      = 4;
 }
 
 message SmoothVelocityStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of velocity values for this stream, in meters per second
-  repeated float data         = 4;
+  repeated float data                      = 4;
 }
 
 message Split {
@@ -1388,164 +1603,164 @@ message StreamSet {
 
 message SummaryActivity {
   // The unique identifier of the activity
-  optional int64 id                    = 1;
+  optional int64 id                            = 1;
   // The identifier provided at upload time
-  optional string external_id          = 2;
+  optional string external_id                  = 2;
   // The identifier of the upload that resulted in this activity
-  optional int64 upload_id             = 3;
-  optional MetaAthlete athlete         = 4;
+  optional int64 upload_id                     = 3;
+  optional MetaAthlete athlete                 = 4;
   // The name of the activity
-  optional string name                 = 5;
+  optional string name                         = 5;
   // The activity's distance, in meters
-  optional float distance              = 6;
+  optional float distance                      = 6;
   // The activity's moving time, in seconds
-  optional int64 moving_time           = 7;
+  optional int64 moving_time                   = 7;
   // The activity's elapsed time, in seconds
-  optional int64 elapsed_time          = 8;
+  optional int64 elapsed_time                  = 8;
   // The activity's total elevation gain.
-  optional float total_elevation_gain  = 9;
+  optional float total_elevation_gain          = 9;
   // The activity's highest elevation, in meters
-  optional float elev_high             = 10;
+  optional float elev_high                     = 10;
   // The activity's lowest elevation, in meters
-  optional float elev_low              = 11;
+  optional float elev_low                      = 11;
   // An enumeration of the types an activity may have. Note that this enumeration does
   // not include new sport types (e.g. MountainBikeRide, EMountainBikeRide), activities
   // with these sport types will have the corresponding activity type (e.g. Ride for
   // MountainBikeRide, EBikeRide for EMountainBikeRide)
-  optional string type                 = 12;
+  optional SummaryClubActivityTypes type       = 12;
   // An enumeration of the sport types an activity may have. Distinct from ActivityType
   // in that it has new types (e.g. MountainBikeRide)
-  optional string sport_type           = 13;
+  optional DetailedActivitySportType sport_type = 13;
   // The time at which the activity was started.
-  optional string start_date           = 14;
+  optional string start_date                   = 14;
   // The time at which the activity was started in the local timezone.
-  optional string start_date_local     = 15;
+  optional string start_date_local             = 15;
   // The timezone of the activity
-  optional string timezone             = 16;
+  optional string timezone                     = 16;
   // A pair of latitude/longitude coordinates, represented as an array of 2 floating
   // point numbers.
-  repeated float start_latlng          = 17;
+  repeated float start_latlng                  = 17;
   // A pair of latitude/longitude coordinates, represented as an array of 2 floating
   // point numbers.
-  repeated float end_latlng            = 18;
+  repeated float end_latlng                    = 18;
   // The number of achievements gained during this activity
-  optional int64 achievement_count     = 19;
+  optional int64 achievement_count             = 19;
   // The number of kudos given for this activity
-  optional int64 kudos_count           = 20;
+  optional int64 kudos_count                   = 20;
   // The number of comments for this activity
-  optional int64 comment_count         = 21;
+  optional int64 comment_count                 = 21;
   // The number of athletes for taking part in a group activity
-  optional int64 athlete_count         = 22;
+  optional int64 athlete_count                 = 22;
   // The number of Instagram photos for this activity
-  optional int64 photo_count           = 23;
+  optional int64 photo_count                   = 23;
   // The number of Instagram and Strava photos for this activity
-  optional int64 total_photo_count     = 24;
-  optional PolylineMap map             = 25;
+  optional int64 total_photo_count             = 24;
+  optional PolylineMap map                     = 25;
   // The name of the device used to record the activity
-  optional string device_name          = 26;
+  optional string device_name                  = 26;
   // Whether this activity was recorded on a training machine
-  optional bool trainer                = 27;
+  optional bool trainer                        = 27;
   // Whether this activity is a commute
-  optional bool commute                = 28;
+  optional bool commute                        = 28;
   // Whether this activity was created manually
-  optional bool manual                 = 29;
+  optional bool manual                         = 29;
   // Whether this activity is private
-  optional bool private                = 30;
+  optional bool private                        = 30;
   // Whether this activity is flagged
-  optional bool flagged                = 31;
+  optional bool flagged                        = 31;
   // The activity's workout type
-  optional int64 workout_type          = 32;
+  optional int64 workout_type                  = 32;
   // The unique identifier of the upload in string format
-  optional string upload_id_str        = 33;
+  optional string upload_id_str                = 33;
   // The activity's average speed, in meters per second
-  optional float average_speed         = 34;
+  optional float average_speed                 = 34;
   // The activity's max speed, in meters per second
-  optional float max_speed             = 35;
+  optional float max_speed                     = 35;
   // Whether the logged-in athlete has kudoed this activity
-  optional bool has_kudoed             = 36;
+  optional bool has_kudoed                     = 36;
   // Whether the activity is muted
-  optional bool hide_from_home         = 37;
+  optional bool hide_from_home                 = 37;
   // The id of the gear for the activity
-  optional string gear_id              = 38;
+  optional string gear_id                      = 38;
   // The total work done in kilojoules during this activity. Rides only
-  optional float kilojoules            = 39;
+  optional float kilojoules                    = 39;
   // Average power output in watts during this activity. Rides only
-  optional float average_watts         = 40;
+  optional float average_watts                 = 40;
   // Whether the watts are from a power meter, false if estimated
-  optional bool device_watts           = 41;
+  optional bool device_watts                   = 41;
   // Rides with power meter data only
-  optional int64 max_watts             = 42;
+  optional int64 max_watts                     = 42;
   // Similar to Normalized Power. Rides with power meter data only
-  optional int64 weighted_average_watts = 43;
+  optional int64 weighted_average_watts        = 43;
 }
 
 message SummaryAthlete {
   // The unique identifier of the athlete
-  optional int64 id             = 1;
+  optional int64 id              = 1;
   // Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 ->
   // "summary", 3 -> "detail"
-  optional int64 resource_state = 2;
+  optional int64 resource_state  = 2;
   // The athlete's first name.
-  optional string firstname     = 3;
+  optional string firstname      = 3;
   // The athlete's last name.
-  optional string lastname      = 4;
+  optional string lastname       = 4;
   // URL to a 62x62 pixel profile picture.
   optional string profile_medium = 5;
   // URL to a 124x124 pixel profile picture.
-  optional string profile       = 6;
+  optional string profile        = 6;
   // The athlete's city.
-  optional string city          = 7;
+  optional string city           = 7;
   // The athlete's state or geographical region.
-  optional string state         = 8;
+  optional string state          = 8;
   // The athlete's country.
-  optional string country       = 9;
+  optional string country        = 9;
   // The athlete's sex.
-  optional string sex           = 10;
+  optional DetailedAthleteSex sex = 10;
   // Deprecated. Use summit field instead. Whether the athlete has any Summit
   // subscription.
-  optional bool premium         = 11;
+  optional bool premium          = 11;
   // Whether the athlete has any Summit subscription.
-  optional bool summit          = 12;
+  optional bool summit           = 12;
   // The time at which the athlete was created.
-  optional string created_at    = 13;
+  optional string created_at     = 13;
   // The time at which the athlete was last updated.
-  optional string updated_at    = 14;
+  optional string updated_at     = 14;
 }
 
 message SummaryClub {
   // The club's unique identifier.
-  optional int64 id                = 1;
+  optional int64 id                               = 1;
   // Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 ->
   // "summary", 3 -> "detail"
-  optional int64 resource_state    = 2;
+  optional int64 resource_state                   = 2;
   // The club's name.
-  optional string name             = 3;
+  optional string name                            = 3;
   // URL to a 60x60 pixel profile picture.
-  optional string profile_medium   = 4;
+  optional string profile_medium                  = 4;
   // URL to a ~1185x580 pixel cover photo.
-  optional string cover_photo      = 5;
+  optional string cover_photo                     = 5;
   // URL to a ~360x176  pixel cover photo.
-  optional string cover_photo_small = 6;
+  optional string cover_photo_small               = 6;
   // Deprecated. Prefer to use activity_types.
-  optional string sport_type       = 7;
+  optional SummaryClubSportType sport_type        = 7;
   // The activity types that count for a club. This takes precedence over sport_type.
-  repeated string activity_types   = 8;
+  repeated SummaryClubActivityTypes activity_types = 8;
   // The club's city.
-  optional string city             = 9;
+  optional string city                            = 9;
   // The club's state or geographical region.
-  optional string state            = 10;
+  optional string state                           = 10;
   // The club's country.
-  optional string country          = 11;
+  optional string country                         = 11;
   // Whether the club is private.
-  optional bool private            = 12;
+  optional bool private                           = 12;
   // The club's member count.
-  optional int64 member_count      = 13;
+  optional int64 member_count                     = 13;
   // Whether the club is featured or not.
-  optional bool featured           = 14;
+  optional bool featured                          = 14;
   // Whether the club is verified or not.
-  optional bool verified           = 15;
+  optional bool verified                          = 15;
   // The club's vanity URL.
-  optional string url              = 16;
+  optional string url                             = 16;
 }
 
 message SummaryGear {
@@ -1578,7 +1793,7 @@ message SummarySegment {
   optional int64 id                                  = 1;
   // The name of this segment
   optional string name                               = 2;
-  optional string activity_type                      = 3;
+  optional DetailedSegmentActivityType activity_type = 3;
   // The segment's distance, in meters
   optional float distance                            = 4;
   // The segment's average grade, in percents
@@ -1629,13 +1844,13 @@ message SummarySegmentEffort {
 
 message TemperatureStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of temperature values for this stream, in celsius degrees
-  repeated int64 data         = 4;
+  repeated int64 data                      = 4;
 }
 
 message TimedZoneRange {
@@ -1649,63 +1864,63 @@ message TimedZoneRange {
 
 message TimeStream {
   // The number of data points in this stream
-  optional int64 original_size = 1;
+  optional int64 original_size             = 1;
   // The level of detail (sampling) in which this stream was returned
-  optional string resolution  = 2;
+  optional BaseStreamResolution resolution = 2;
   // The base series used in the case the stream was downsampled
-  optional string series_type = 3;
+  optional BaseStreamSeriesType series_type = 3;
   // The sequence of time values for this stream, in seconds
-  repeated int64 data         = 4;
+  repeated int64 data                      = 4;
 }
 
 message UpdatableActivity {
   // Whether this activity is a commute
-  optional bool commute       = 1;
+  optional bool commute                        = 1;
   // Whether this activity was recorded on a training machine
-  optional bool trainer       = 2;
+  optional bool trainer                        = 2;
   // Whether this activity is muted
-  optional bool hide_from_home = 3;
+  optional bool hide_from_home                 = 3;
   // The description of the activity
-  optional string description = 4;
+  optional string description                  = 4;
   // The name of the activity
-  optional string name        = 5;
+  optional string name                         = 5;
   // An enumeration of the types an activity may have. Note that this enumeration does
   // not include new sport types (e.g. MountainBikeRide, EMountainBikeRide), activities
   // with these sport types will have the corresponding activity type (e.g. Ride for
   // MountainBikeRide, EBikeRide for EMountainBikeRide)
-  optional string type        = 6;
+  optional SummaryClubActivityTypes type       = 6;
   // An enumeration of the sport types an activity may have. Distinct from ActivityType
   // in that it has new types (e.g. MountainBikeRide)
-  optional string sport_type  = 7;
+  optional DetailedActivitySportType sport_type = 7;
   // Identifier for the gear associated with the activity. ‘none’ clears gear from
   // activity
-  optional string gear_id     = 8;
+  optional string gear_id                      = 8;
 }
 
 // Update Activity
 message UpdateActivityByIdRequest {
-  int64 id                    = 1;
+  int64 id                                     = 1;
   // Whether this activity is a commute
-  optional bool commute       = 2;
+  optional bool commute                        = 2;
   // Whether this activity was recorded on a training machine
-  optional bool trainer       = 3;
+  optional bool trainer                        = 3;
   // Whether this activity is muted
-  optional bool hide_from_home = 4;
+  optional bool hide_from_home                 = 4;
   // The description of the activity
-  optional string description = 5;
+  optional string description                  = 5;
   // The name of the activity
-  optional string name        = 6;
+  optional string name                         = 6;
   // An enumeration of the types an activity may have. Note that this enumeration does
   // not include new sport types (e.g. MountainBikeRide, EMountainBikeRide), activities
   // with these sport types will have the corresponding activity type (e.g. Ride for
   // MountainBikeRide, EBikeRide for EMountainBikeRide)
-  optional string type        = 7;
+  optional SummaryClubActivityTypes type       = 7;
   // An enumeration of the sport types an activity may have. Distinct from ActivityType
   // in that it has new types (e.g. MountainBikeRide)
-  optional string sport_type  = 8;
+  optional DetailedActivitySportType sport_type = 8;
   // Identifier for the gear associated with the activity. ‘none’ clears gear from
   // activity
-  optional string gear_id     = 9;
+  optional string gear_id                      = 9;
 }
 
 // Update Athlete
