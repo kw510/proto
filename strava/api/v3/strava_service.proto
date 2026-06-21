@@ -6,6 +6,8 @@ import "google/api/annotations.proto";
 
 import "google/api/httpbody.proto";
 
+import "google/protobuf/timestamp.proto";
+
 // The Swagger Playground is the easiest way to familiarize yourself with the Strava API
 // by submitting HTTP requests and observing the responses before you write any client
 // code. It will show what a response will look like with different endpoints depending
@@ -648,14 +650,14 @@ message ClubActivity {
 
 message ClubAnnouncement {
   // The unique identifier of this announcement.
-  optional int64 id              = 1;
+  optional int64 id                            = 1;
   // The unique identifier of the club this announcements was made in.
-  optional int64 club_id         = 2;
-  optional SummaryAthlete athlete = 3;
+  optional int64 club_id                       = 2;
+  optional SummaryAthlete athlete              = 3;
   // The time at which this announcement was created.
-  optional string created_at     = 4;
+  optional google.protobuf.Timestamp created_at = 4;
   // The content of this announcement
-  optional string message        = 5;
+  optional string message                      = 5;
 }
 
 message ClubAthlete {
@@ -676,36 +678,36 @@ message ClubAthlete {
 
 message Comment {
   // The unique identifier of this comment
-  optional int64 id              = 1;
+  optional int64 id                            = 1;
   // The identifier of the activity this comment is related to
-  optional int64 activity_id     = 2;
+  optional int64 activity_id                   = 2;
   // The content of the comment
-  optional string text           = 3;
-  optional SummaryAthlete athlete = 4;
+  optional string text                         = 3;
+  optional SummaryAthlete athlete              = 4;
   // The time at which this comment was created.
-  optional string created_at     = 5;
+  optional google.protobuf.Timestamp created_at = 5;
 }
 
 // Create an Activity
 message CreateActivityRequest {
   // The name of the activity.
-  string name                = 1;
+  string name                               = 1;
   // Type of activity. For example - Run, Ride etc.
-  optional string type       = 2;
+  optional string type                      = 2;
   // Sport type of activity. For example - Run, MountainBikeRide, Ride, etc.
-  string sport_type          = 3;
+  DetailedActivitySportType sport_type      = 3;
   // ISO 8601 formatted date time.
-  string start_date_local    = 4;
+  google.protobuf.Timestamp start_date_local = 4;
   // In seconds.
-  int64 elapsed_time         = 5;
+  int64 elapsed_time                        = 5;
   // Description of the activity.
-  optional string description = 6;
+  optional string description               = 6;
   // In meters.
-  optional float distance    = 7;
+  optional float distance                   = 7;
   // Set to 1 to mark as a trainer activity.
-  optional int64 trainer     = 8;
+  optional int64 trainer                    = 8;
   // Set to 1 to mark as commute.
-  optional int64 commute     = 9;
+  optional int64 commute                    = 9;
 }
 
 // Upload Activity
@@ -729,110 +731,126 @@ message CreateUploadRequest {
 
 message DetailedActivity {
   // The unique identifier of the activity
-  optional int64 id                             = 1;
+  optional int64 id                                  = 1;
   // The identifier provided at upload time
-  optional string external_id                   = 2;
+  optional string external_id                        = 2;
   // The identifier of the upload that resulted in this activity
-  optional int64 upload_id                      = 3;
-  optional MetaAthlete athlete                  = 4;
+  optional int64 upload_id                           = 3;
+  optional MetaAthlete athlete                       = 4;
   // The name of the activity
-  optional string name                          = 5;
+  optional string name                               = 5;
   // The activity's distance, in meters
-  optional float distance                       = 6;
+  optional float distance                            = 6;
   // The activity's moving time, in seconds
-  optional int64 moving_time                    = 7;
+  optional int64 moving_time                         = 7;
   // The activity's elapsed time, in seconds
-  optional int64 elapsed_time                   = 8;
+  optional int64 elapsed_time                        = 8;
   // The activity's total elevation gain.
-  optional float total_elevation_gain           = 9;
+  optional float total_elevation_gain                = 9;
   // The activity's highest elevation, in meters
-  optional float elev_high                      = 10;
+  optional float elev_high                           = 10;
   // The activity's lowest elevation, in meters
-  optional float elev_low                       = 11;
+  optional float elev_low                            = 11;
   // An enumeration of the types an activity may have. Note that this enumeration does
   // not include new sport types (e.g. MountainBikeRide, EMountainBikeRide), activities
   // with these sport types will have the corresponding activity type (e.g. Ride for
   // MountainBikeRide, EBikeRide for EMountainBikeRide)
-  optional SummaryClubActivityTypes type        = 12;
+  optional SummaryClubActivityTypes type             = 12;
   // An enumeration of the sport types an activity may have. Distinct from ActivityType
   // in that it has new types (e.g. MountainBikeRide)
-  optional DetailedActivitySportType sport_type = 13;
+  optional DetailedActivitySportType sport_type      = 13;
   // The time at which the activity was started.
-  optional string start_date                    = 14;
+  optional google.protobuf.Timestamp start_date      = 14;
   // The time at which the activity was started in the local timezone.
-  optional string start_date_local              = 15;
+  optional google.protobuf.Timestamp start_date_local = 15;
   // The timezone of the activity
-  optional string timezone                      = 16;
+  optional string timezone                           = 16;
   // A pair of latitude/longitude coordinates, represented as an array of 2 floating
   // point numbers.
-  repeated float start_latlng                   = 17;
+  repeated float start_latlng                        = 17;
   // A pair of latitude/longitude coordinates, represented as an array of 2 floating
   // point numbers.
-  repeated float end_latlng                     = 18;
+  repeated float end_latlng                          = 18;
   // The number of achievements gained during this activity
-  optional int64 achievement_count              = 19;
+  optional int64 achievement_count                   = 19;
   // The number of kudos given for this activity
-  optional int64 kudos_count                    = 20;
+  optional int64 kudos_count                         = 20;
   // The number of comments for this activity
-  optional int64 comment_count                  = 21;
+  optional int64 comment_count                       = 21;
   // The number of athletes for taking part in a group activity
-  optional int64 athlete_count                  = 22;
+  optional int64 athlete_count                       = 22;
   // The number of Instagram photos for this activity
-  optional int64 photo_count                    = 23;
+  optional int64 photo_count                         = 23;
   // The number of Instagram and Strava photos for this activity
-  optional int64 total_photo_count              = 24;
-  optional PolylineMap map                      = 25;
+  optional int64 total_photo_count                   = 24;
+  optional PolylineMap map                           = 25;
   // The name of the device used to record the activity
-  optional string device_name                   = 26;
+  optional string device_name                        = 26;
   // Whether this activity was recorded on a training machine
-  optional bool trainer                         = 27;
+  optional bool trainer                              = 27;
   // Whether this activity is a commute
-  optional bool commute                         = 28;
+  optional bool commute                              = 28;
   // Whether this activity was created manually
-  optional bool manual                          = 29;
+  optional bool manual                               = 29;
   // Whether this activity is private
-  optional bool private                         = 30;
+  optional bool private                              = 30;
   // Whether this activity is flagged
-  optional bool flagged                         = 31;
+  optional bool flagged                              = 31;
   // The activity's workout type
-  optional int64 workout_type                   = 32;
+  optional int64 workout_type                        = 32;
   // The unique identifier of the upload in string format
-  optional string upload_id_str                 = 33;
+  optional string upload_id_str                      = 33;
   // The activity's average speed, in meters per second
-  optional float average_speed                  = 34;
+  optional float average_speed                       = 34;
   // The activity's max speed, in meters per second
-  optional float max_speed                      = 35;
+  optional float max_speed                           = 35;
   // Whether the logged-in athlete has kudoed this activity
-  optional bool has_kudoed                      = 36;
+  optional bool has_kudoed                           = 36;
   // Whether the activity is muted
-  optional bool hide_from_home                  = 37;
+  optional bool hide_from_home                       = 37;
   // The id of the gear for the activity
-  optional string gear_id                       = 38;
+  optional string gear_id                            = 38;
   // The total work done in kilojoules during this activity. Rides only
-  optional float kilojoules                     = 39;
+  optional float kilojoules                          = 39;
   // Average power output in watts during this activity. Rides only
-  optional float average_watts                  = 40;
+  optional float average_watts                       = 40;
   // Whether the watts are from a power meter, false if estimated
-  optional bool device_watts                    = 41;
+  optional bool device_watts                         = 41;
   // Rides with power meter data only
-  optional int64 max_watts                      = 42;
+  optional int64 max_watts                           = 42;
   // Similar to Normalized Power. Rides with power meter data only
-  optional int64 weighted_average_watts         = 43;
+  optional int64 weighted_average_watts              = 43;
   // The description of the activity
-  optional string description                   = 44;
-  optional PhotosSummary photos                 = 45;
-  optional SummaryGear gear                     = 46;
+  optional string description                        = 44;
+  optional PhotosSummary photos                      = 45;
+  optional SummaryGear gear                          = 46;
   // The number of kilocalories consumed during this activity
-  optional float calories                       = 47;
-  repeated DetailedSegmentEffort segment_efforts = 48;
+  optional float calories                            = 47;
+  repeated DetailedSegmentEffort segment_efforts     = 48;
   // The token used to embed a Strava activity
-  optional string embed_token                   = 49;
+  optional string embed_token                        = 49;
   // The splits of this activity in metric units (for runs)
-  repeated Split splits_metric                  = 50;
+  repeated Split splits_metric                       = 50;
   // The splits of this activity in imperial units (for runs)
-  repeated Split splits_standard                = 51;
-  repeated Lap laps                             = 52;
-  repeated DetailedSegmentEffort best_efforts   = 53;
+  repeated Split splits_standard                     = 51;
+  repeated Lap laps                                  = 52;
+  repeated DetailedSegmentEffort best_efforts        = 53;
+  optional int32 resource_state                      = 56;
+  optional int32 utc_offset                          = 57;
+  optional string visibility                         = 58;
+  optional double average_cadence                    = 59;
+  optional int32 average_temp                        = 60;
+  optional bool has_heartrate                        = 61;
+  optional double average_heartrate                  = 62;
+  optional int32 max_heartrate                       = 63;
+  optional bool heartrate_opt_out                    = 64;
+  optional bool display_hide_heartrate_option        = 65;
+  optional bool from_accepted_tag                    = 66;
+  optional int32 pr_count                            = 67;
+  optional int32 suffer_score                        = 68;
+  repeated StatsVisibility stats_visibility          = 69;
+  optional string sport_image_visibility             = 70;
+  repeated string available_zones                    = 71;
 }
 
 message DetailedAthlete {
@@ -863,9 +881,9 @@ message DetailedAthlete {
   // Whether the athlete has any Summit subscription.
   optional bool summit                                                = 12;
   // The time at which the athlete was created.
-  optional string created_at                                          = 13;
+  optional google.protobuf.Timestamp created_at                       = 13;
   // The time at which the athlete was last updated.
-  optional string updated_at                                          = 14;
+  optional google.protobuf.Timestamp updated_at                       = 14;
   // The athlete's follower count.
   optional int64 follower_count                                       = 15;
   // The athlete's friend count.
@@ -882,6 +900,14 @@ message DetailedAthlete {
   repeated SummaryGear bikes                                          = 21;
   // The athlete's shoes.
   repeated SummaryGear shoes                                          = 22;
+  optional string username                                            = 24;
+  optional int32 badge_type_id                                        = 25;
+  optional bool blocked                                               = 26;
+  optional bool can_follow                                            = 27;
+  optional int32 mutual_friend_count                                  = 28;
+  optional int32 athlete_type                                         = 29;
+  optional string date_preference                                     = 30;
+  optional int32 postable_clubs_count                                 = 31;
 }
 
 message DetailedClub {
@@ -986,9 +1012,9 @@ message DetailedSegment {
   optional SummaryPRSegmentEffort athlete_pr_effort  = 16;
   optional SummarySegmentEffort athlete_segment_stats = 17;
   // The time at which the segment was created.
-  optional string created_at                         = 18;
+  optional google.protobuf.Timestamp created_at      = 18;
   // The time at which the segment was last updated.
-  optional string updated_at                         = 19;
+  optional google.protobuf.Timestamp updated_at      = 19;
   // The segment's total elevation gain.
   optional float total_elevation_gain                = 20;
   optional PolylineMap map                           = 21;
@@ -1004,49 +1030,52 @@ message DetailedSegment {
 
 message DetailedSegmentEffort {
   // The unique identifier of this effort
-  optional int64 id               = 1;
+  optional int64 id                                  = 1;
   // The unique identifier of the activity related to this effort
-  optional int64 activity_id      = 2;
+  optional int64 activity_id                         = 2;
   // The effort's elapsed time
-  optional int64 elapsed_time     = 3;
+  optional int64 elapsed_time                        = 3;
   // The time at which the effort was started.
-  optional string start_date      = 4;
+  optional google.protobuf.Timestamp start_date      = 4;
   // The time at which the effort was started in the local timezone.
-  optional string start_date_local = 5;
+  optional google.protobuf.Timestamp start_date_local = 5;
   // The effort's distance in meters
-  optional float distance         = 6;
+  optional float distance                            = 6;
   // Whether this effort is the current best on the leaderboard
-  optional bool is_kom            = 7;
+  optional bool is_kom                               = 7;
   // The name of the segment on which this effort was performed
-  optional string name            = 8;
-  optional MetaAthlete activity   = 9;
-  optional MetaAthlete athlete    = 10;
+  optional string name                               = 8;
+  optional MetaAthlete activity                      = 9;
+  optional MetaAthlete athlete                       = 10;
   // The effort's moving time
-  optional int64 moving_time      = 11;
+  optional int64 moving_time                         = 11;
   // The start index of this effort in its activity's stream
-  optional int64 start_index      = 12;
+  optional int64 start_index                         = 12;
   // The end index of this effort in its activity's stream
-  optional int64 end_index        = 13;
+  optional int64 end_index                           = 13;
   // The effort's average cadence
-  optional float average_cadence  = 14;
+  optional float average_cadence                     = 14;
   // The average wattage of this effort
-  optional float average_watts    = 15;
+  optional float average_watts                       = 15;
   // For riding efforts, whether the wattage was reported by a dedicated recording
   // device
-  optional bool device_watts      = 16;
+  optional bool device_watts                         = 16;
   // The heart heart rate of the athlete during this effort
-  optional float average_heartrate = 17;
+  optional float average_heartrate                   = 17;
   // The maximum heart rate of the athlete during this effort
-  optional float max_heartrate    = 18;
-  optional SummarySegment segment = 19;
+  optional float max_heartrate                       = 18;
+  optional SummarySegment segment                    = 19;
   // The rank of the effort on the global leaderboard if it belongs in the top 10 at the
   // time of upload
-  optional int64 kom_rank         = 20;
+  optional int64 kom_rank                            = 20;
   // The rank of the effort on the athlete's leaderboard if it belongs in the top 3 at
   // the time of upload
-  optional int64 pr_rank          = 21;
+  optional int64 pr_rank                             = 21;
   // Whether this effort should be hidden when viewed within an activity
-  optional bool hidden            = 22;
+  optional bool hidden                               = 22;
+  optional int32 resource_state                      = 25;
+  repeated string achievements                       = 26;
+  optional string visibility                         = 27;
 }
 
 message DistanceStream {
@@ -1211,13 +1240,13 @@ message GetCommentsByActivityIdResponse {
 // List Segment Efforts
 message GetEffortsBySegmentIdRequest {
   // The identifier of the segment.
-  int64 segment_id                = 1;
+  int64 segment_id                                   = 1;
   // ISO 8601 formatted date time.
-  optional string start_date_local = 2;
+  optional google.protobuf.Timestamp start_date_local = 2;
   // ISO 8601 formatted date time.
-  optional string end_date_local  = 3;
+  optional google.protobuf.Timestamp end_date_local  = 3;
   // Number of items per page. Defaults to 30.
-  optional int64 per_page         = 4;
+  optional int64 per_page                            = 4;
 }
 
 message GetEffortsBySegmentIdResponse {
@@ -1415,38 +1444,43 @@ message HeartRateZoneRanges {
 
 message Lap {
   // The unique identifier of this lap
-  optional int64 id                  = 1;
-  optional MetaAthlete activity      = 2;
-  optional MetaAthlete athlete       = 3;
+  optional int64 id                                  = 1;
+  optional MetaAthlete activity                      = 2;
+  optional MetaAthlete athlete                       = 3;
   // The lap's average cadence
-  optional float average_cadence     = 4;
+  optional float average_cadence                     = 4;
   // The lap's average speed
-  optional float average_speed       = 5;
+  optional float average_speed                       = 5;
   // The lap's distance, in meters
-  optional float distance            = 6;
+  optional float distance                            = 6;
   // The lap's elapsed time, in seconds
-  optional int64 elapsed_time        = 7;
+  optional int64 elapsed_time                        = 7;
   // The start index of this effort in its activity's stream
-  optional int64 start_index         = 8;
+  optional int64 start_index                         = 8;
   // The end index of this effort in its activity's stream
-  optional int64 end_index           = 9;
+  optional int64 end_index                           = 9;
   // The index of this lap in the activity it belongs to
-  optional int64 lap_index           = 10;
+  optional int64 lap_index                           = 10;
   // The maximum speed of this lat, in meters per second
-  optional float max_speed           = 11;
+  optional float max_speed                           = 11;
   // The lap's moving time, in seconds
-  optional int64 moving_time         = 12;
+  optional int64 moving_time                         = 12;
   // The name of the lap
-  optional string name               = 13;
+  optional string name                               = 13;
   // The athlete's pace zone during this lap
-  optional int64 pace_zone           = 14;
-  optional int64 split               = 15;
+  optional int64 pace_zone                           = 14;
+  optional int64 split                               = 15;
   // The time at which the lap was started.
-  optional string start_date         = 16;
+  optional google.protobuf.Timestamp start_date      = 16;
   // The time at which the lap was started in the local timezone.
-  optional string start_date_local   = 17;
+  optional google.protobuf.Timestamp start_date_local = 17;
   // The elevation gain of this lap, in meters
-  optional float total_elevation_gain = 18;
+  optional float total_elevation_gain                = 18;
+  optional int32 resource_state                      = 20;
+  optional bool device_watts                         = 21;
+  optional double average_watts                      = 22;
+  optional double average_heartrate                  = 23;
+  optional int32 max_heartrate                       = 24;
 }
 
 message LatLngStream {
@@ -1476,7 +1510,9 @@ message MetaActivity {
 
 message MetaAthlete {
   // The unique identifier of the athlete
-  optional int64 id = 1;
+  optional int64 id            = 1;
+  optional int32 resource_state = 2;
+  optional string visibility   = 3;
 }
 
 message MetaClub {
@@ -1562,6 +1598,7 @@ message PolylineMap {
   optional string polyline        = 2;
   // The summary polyline of the map
   optional string summary_polyline = 3;
+  optional int32 resource_state   = 4;
 }
 
 message PowerStream {
@@ -1587,41 +1624,41 @@ message Primary {
 }
 
 message Route {
-  optional SummaryAthlete athlete     = 1;
+  optional SummaryAthlete athlete              = 1;
   // The description of the route
-  optional string description         = 2;
+  optional string description                  = 2;
   // The route's distance, in meters
-  optional float distance             = 3;
+  optional float distance                      = 3;
   // The route's elevation gain.
-  optional float elevation_gain       = 4;
+  optional float elevation_gain                = 4;
   // The unique identifier of this route
-  optional int64 id                   = 5;
+  optional int64 id                            = 5;
   // The unique identifier of the route in string format
-  optional string id_str              = 6;
-  optional PolylineMap map            = 7;
+  optional string id_str                       = 6;
+  optional PolylineMap map                     = 7;
   // The name of this route
-  optional string name                = 8;
+  optional string name                         = 8;
   // Whether this route is private
-  optional bool private               = 9;
+  optional bool private                        = 9;
   // Whether this route is starred by the logged-in athlete
-  optional bool starred               = 10;
+  optional bool starred                        = 10;
   // An epoch timestamp of when the route was created
-  optional int64 timestamp            = 11;
+  optional int64 timestamp                     = 11;
   // This route's type (1 for ride, 2 for runs)
-  optional int64 type                 = 12;
+  optional int64 type                          = 12;
   // This route's sub-type (1 for road, 2 for mountain bike, 3 for cross, 4 for trail, 5
   // for mixed)
-  optional int64 sub_type             = 13;
+  optional int64 sub_type                      = 13;
   // The time at which the route was created
-  optional string created_at          = 14;
+  optional google.protobuf.Timestamp created_at = 14;
   // The time at which the route was last updated
-  optional string updated_at          = 15;
+  optional google.protobuf.Timestamp updated_at = 15;
   // Estimated time in seconds for the authenticated athlete to complete route
-  optional int64 estimated_moving_time = 16;
+  optional int64 estimated_moving_time         = 16;
   // The segments traversed by this route
-  repeated SummarySegment segments    = 17;
+  repeated SummarySegment segments             = 17;
   // The custom waypoints along this route
-  repeated Waypoint waypoints         = 18;
+  repeated Waypoint waypoints                  = 18;
 }
 
 message SmoothGradeStream {
@@ -1648,19 +1685,21 @@ message SmoothVelocityStream {
 
 message Split {
   // The average speed of this split, in meters per second
-  optional float average_speed       = 1;
+  optional float average_speed                = 1;
   // The distance of this split, in meters
-  optional float distance            = 2;
+  optional float distance                     = 2;
   // The elapsed time of this split, in seconds
-  optional int64 elapsed_time        = 3;
+  optional int64 elapsed_time                 = 3;
   // The elevation difference of this split, in meters
-  optional float elevation_difference = 4;
+  optional float elevation_difference         = 4;
   // The pacing zone of this split
-  optional int64 pace_zone           = 5;
+  optional int64 pace_zone                    = 5;
   // The moving time of this split, in seconds
-  optional int64 moving_time         = 6;
+  optional int64 moving_time                  = 6;
   // N/A
-  optional int64 split               = 7;
+  optional int64 split                        = 7;
+  optional double average_grade_adjusted_speed = 9;
+  optional double average_heartrate           = 10;
 }
 
 // Star Segment
@@ -1669,6 +1708,11 @@ message StarSegmentRequest {
   int64 id    = 1;
   // If true, star the segment; if false, unstar the segment.
   bool starred = 2;
+}
+
+message StatsVisibility {
+  optional string type      = 1;
+  optional string visibility = 2;
 }
 
 message StreamSet {
@@ -1687,128 +1731,141 @@ message StreamSet {
 
 message SummaryActivity {
   // The unique identifier of the activity
-  optional int64 id                            = 1;
+  optional int64 id                                  = 1;
   // The identifier provided at upload time
-  optional string external_id                  = 2;
+  optional string external_id                        = 2;
   // The identifier of the upload that resulted in this activity
-  optional int64 upload_id                     = 3;
-  optional MetaAthlete athlete                 = 4;
+  optional int64 upload_id                           = 3;
+  optional MetaAthlete athlete                       = 4;
   // The name of the activity
-  optional string name                         = 5;
+  optional string name                               = 5;
   // The activity's distance, in meters
-  optional float distance                      = 6;
+  optional float distance                            = 6;
   // The activity's moving time, in seconds
-  optional int64 moving_time                   = 7;
+  optional int64 moving_time                         = 7;
   // The activity's elapsed time, in seconds
-  optional int64 elapsed_time                  = 8;
+  optional int64 elapsed_time                        = 8;
   // The activity's total elevation gain.
-  optional float total_elevation_gain          = 9;
+  optional float total_elevation_gain                = 9;
   // The activity's highest elevation, in meters
-  optional float elev_high                     = 10;
+  optional float elev_high                           = 10;
   // The activity's lowest elevation, in meters
-  optional float elev_low                      = 11;
+  optional float elev_low                            = 11;
   // An enumeration of the types an activity may have. Note that this enumeration does
   // not include new sport types (e.g. MountainBikeRide, EMountainBikeRide), activities
   // with these sport types will have the corresponding activity type (e.g. Ride for
   // MountainBikeRide, EBikeRide for EMountainBikeRide)
-  optional SummaryClubActivityTypes type       = 12;
+  optional SummaryClubActivityTypes type             = 12;
   // An enumeration of the sport types an activity may have. Distinct from ActivityType
   // in that it has new types (e.g. MountainBikeRide)
-  optional DetailedActivitySportType sport_type = 13;
+  optional DetailedActivitySportType sport_type      = 13;
   // The time at which the activity was started.
-  optional string start_date                   = 14;
+  optional google.protobuf.Timestamp start_date      = 14;
   // The time at which the activity was started in the local timezone.
-  optional string start_date_local             = 15;
+  optional google.protobuf.Timestamp start_date_local = 15;
   // The timezone of the activity
-  optional string timezone                     = 16;
+  optional string timezone                           = 16;
   // A pair of latitude/longitude coordinates, represented as an array of 2 floating
   // point numbers.
-  repeated float start_latlng                  = 17;
+  repeated float start_latlng                        = 17;
   // A pair of latitude/longitude coordinates, represented as an array of 2 floating
   // point numbers.
-  repeated float end_latlng                    = 18;
+  repeated float end_latlng                          = 18;
   // The number of achievements gained during this activity
-  optional int64 achievement_count             = 19;
+  optional int64 achievement_count                   = 19;
   // The number of kudos given for this activity
-  optional int64 kudos_count                   = 20;
+  optional int64 kudos_count                         = 20;
   // The number of comments for this activity
-  optional int64 comment_count                 = 21;
+  optional int64 comment_count                       = 21;
   // The number of athletes for taking part in a group activity
-  optional int64 athlete_count                 = 22;
+  optional int64 athlete_count                       = 22;
   // The number of Instagram photos for this activity
-  optional int64 photo_count                   = 23;
+  optional int64 photo_count                         = 23;
   // The number of Instagram and Strava photos for this activity
-  optional int64 total_photo_count             = 24;
-  optional PolylineMap map                     = 25;
+  optional int64 total_photo_count                   = 24;
+  optional PolylineMap map                           = 25;
   // The name of the device used to record the activity
-  optional string device_name                  = 26;
+  optional string device_name                        = 26;
   // Whether this activity was recorded on a training machine
-  optional bool trainer                        = 27;
+  optional bool trainer                              = 27;
   // Whether this activity is a commute
-  optional bool commute                        = 28;
+  optional bool commute                              = 28;
   // Whether this activity was created manually
-  optional bool manual                         = 29;
+  optional bool manual                               = 29;
   // Whether this activity is private
-  optional bool private                        = 30;
+  optional bool private                              = 30;
   // Whether this activity is flagged
-  optional bool flagged                        = 31;
+  optional bool flagged                              = 31;
   // The activity's workout type
-  optional int64 workout_type                  = 32;
+  optional int64 workout_type                        = 32;
   // The unique identifier of the upload in string format
-  optional string upload_id_str                = 33;
+  optional string upload_id_str                      = 33;
   // The activity's average speed, in meters per second
-  optional float average_speed                 = 34;
+  optional float average_speed                       = 34;
   // The activity's max speed, in meters per second
-  optional float max_speed                     = 35;
+  optional float max_speed                           = 35;
   // Whether the logged-in athlete has kudoed this activity
-  optional bool has_kudoed                     = 36;
+  optional bool has_kudoed                           = 36;
   // Whether the activity is muted
-  optional bool hide_from_home                 = 37;
+  optional bool hide_from_home                       = 37;
   // The id of the gear for the activity
-  optional string gear_id                      = 38;
+  optional string gear_id                            = 38;
   // The total work done in kilojoules during this activity. Rides only
-  optional float kilojoules                    = 39;
+  optional float kilojoules                          = 39;
   // Average power output in watts during this activity. Rides only
-  optional float average_watts                 = 40;
+  optional float average_watts                       = 40;
   // Whether the watts are from a power meter, false if estimated
-  optional bool device_watts                   = 41;
+  optional bool device_watts                         = 41;
   // Rides with power meter data only
-  optional int64 max_watts                     = 42;
+  optional int64 max_watts                           = 42;
   // Similar to Normalized Power. Rides with power meter data only
-  optional int64 weighted_average_watts        = 43;
+  optional int64 weighted_average_watts              = 43;
+  optional int32 resource_state                      = 45;
+  optional int32 utc_offset                          = 46;
+  optional string visibility                         = 47;
+  optional double average_cadence                    = 48;
+  optional int32 average_temp                        = 49;
+  optional bool has_heartrate                        = 50;
+  optional double average_heartrate                  = 51;
+  optional int32 max_heartrate                       = 52;
+  optional bool heartrate_opt_out                    = 53;
+  optional bool display_hide_heartrate_option        = 54;
+  optional bool from_accepted_tag                    = 55;
+  optional int32 pr_count                            = 56;
+  optional int32 suffer_score                        = 57;
 }
 
 message SummaryAthlete {
   // The unique identifier of the athlete
-  optional int64 id              = 1;
+  optional int64 id                            = 1;
   // Resource state, indicates level of detail. Possible values: 1 -> "meta", 2 ->
   // "summary", 3 -> "detail"
-  optional int64 resource_state  = 2;
+  optional int64 resource_state                = 2;
   // The athlete's first name.
-  optional string firstname      = 3;
+  optional string firstname                    = 3;
   // The athlete's last name.
-  optional string lastname       = 4;
+  optional string lastname                     = 4;
   // URL to a 62x62 pixel profile picture.
-  optional string profile_medium = 5;
+  optional string profile_medium               = 5;
   // URL to a 124x124 pixel profile picture.
-  optional string profile        = 6;
+  optional string profile                      = 6;
   // The athlete's city.
-  optional string city           = 7;
+  optional string city                         = 7;
   // The athlete's state or geographical region.
-  optional string state          = 8;
+  optional string state                        = 8;
   // The athlete's country.
-  optional string country        = 9;
+  optional string country                      = 9;
   // The athlete's sex.
-  optional DetailedAthleteSex sex = 10;
+  optional DetailedAthleteSex sex              = 10;
   // Deprecated. Use summit field instead. Whether the athlete has any Summit
   // subscription.
-  optional bool premium          = 11;
+  optional bool premium                        = 11;
   // Whether the athlete has any Summit subscription.
-  optional bool summit           = 12;
+  optional bool summit                         = 12;
   // The time at which the athlete was created.
-  optional string created_at     = 13;
+  optional google.protobuf.Timestamp created_at = 13;
   // The time at which the athlete was last updated.
-  optional string updated_at     = 14;
+  optional google.protobuf.Timestamp updated_at = 14;
 }
 
 message SummaryClub {
@@ -1845,31 +1902,48 @@ message SummaryClub {
   optional bool verified                          = 15;
   // The club's vanity URL.
   optional string url                             = 16;
+  optional string profile                         = 17;
+  optional string activity_types_icon             = 18;
+  repeated string dimensions                      = 19;
+  optional string localized_sport_type            = 20;
+  optional string membership                      = 21;
+  optional bool admin                             = 22;
+  optional bool owner                             = 23;
 }
 
 message SummaryGear {
   // The gear's unique identifier.
-  optional string id           = 1;
+  optional string id                = 1;
   // Resource state, indicates level of detail. Possible values: 2 -> "summary", 3 ->
   // "detail"
-  optional int64 resource_state = 2;
+  optional int64 resource_state     = 2;
   // Whether this gear's is the owner's default one.
-  optional bool primary        = 3;
+  optional bool primary             = 3;
   // The gear's name.
-  optional string name         = 4;
+  optional string name              = 4;
   // The distance logged with this gear.
-  optional float distance      = 5;
+  optional float distance           = 5;
+  optional string nickname          = 7;
+  optional bool retired             = 8;
+  optional double converted_distance = 9;
 }
 
 message SummaryPRSegmentEffort {
   // The unique identifier of the activity related to the PR effort.
-  optional int64 pr_activity_id = 1;
+  optional int64 pr_activity_id                      = 1;
   // The elapsed time ot the PR effort.
-  optional int64 pr_elapsed_time = 2;
+  optional int64 pr_elapsed_time                     = 2;
   // The time at which the PR effort was started.
-  optional string pr_date       = 3;
+  optional google.protobuf.Timestamp pr_date         = 3;
   // Number of efforts by the authenticated athlete on this segment.
-  optional int64 effort_count   = 4;
+  optional int64 effort_count                        = 4;
+  optional int64 id                                  = 5;
+  optional int64 activity_id                         = 6;
+  optional int32 elapsed_time                        = 7;
+  optional double distance                           = 8;
+  optional google.protobuf.Timestamp start_date      = 9;
+  optional google.protobuf.Timestamp start_date_local = 10;
+  optional bool is_kom                               = 11;
 }
 
 message SummarySegment {
@@ -1907,23 +1981,28 @@ message SummarySegment {
   optional bool private                              = 15;
   optional SummaryPRSegmentEffort athlete_pr_effort  = 16;
   optional SummarySegmentEffort athlete_segment_stats = 17;
+  optional int32 resource_state                      = 19;
+  optional bool hazardous                            = 20;
+  optional bool starred                              = 21;
+  optional int32 pr_time                             = 22;
+  optional google.protobuf.Timestamp starred_date    = 23;
 }
 
 message SummarySegmentEffort {
   // The unique identifier of this effort
-  optional int64 id               = 1;
+  optional int64 id                                  = 1;
   // The unique identifier of the activity related to this effort
-  optional int64 activity_id      = 2;
+  optional int64 activity_id                         = 2;
   // The effort's elapsed time
-  optional int64 elapsed_time     = 3;
+  optional int64 elapsed_time                        = 3;
   // The time at which the effort was started.
-  optional string start_date      = 4;
+  optional google.protobuf.Timestamp start_date      = 4;
   // The time at which the effort was started in the local timezone.
-  optional string start_date_local = 5;
+  optional google.protobuf.Timestamp start_date_local = 5;
   // The effort's distance in meters
-  optional float distance         = 6;
+  optional float distance                            = 6;
   // Whether this effort is the current best on the leaderboard
-  optional bool is_kom            = 7;
+  optional bool is_kom                               = 7;
 }
 
 message TemperatureStream {
