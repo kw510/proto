@@ -334,6 +334,7 @@ enum BaseStreamSeriesType {
   BASE_STREAM_SERIES_TYPE_TIME = 2; // time
 }
 
+// The format of the uploaded file.
 enum CreateUploadRequestDataType {
   CREATE_UPLOAD_REQUEST_DATA_TYPE_UNSPECIFIED = 0;
   CREATE_UPLOAD_REQUEST_DATA_TYPE_FIT = 1; // fit
@@ -444,6 +445,7 @@ enum ExplorerSegmentClimbCategoryDesc {
   EXPLORER_SEGMENT_CLIMB_CATEGORY_DESC_HC = 6; // HC
 }
 
+// Desired activity type.
 enum ExploreSegmentsRequestActivityType {
   EXPLORE_SEGMENTS_REQUEST_ACTIVITY_TYPE_UNSPECIFIED = 0;
   EXPLORE_SEGMENTS_REQUEST_ACTIVITY_TYPE_RUNNING = 1; // running
@@ -686,25 +688,42 @@ message Comment {
 
 // Create an Activity
 message CreateActivityRequest {
+  // The name of the activity.
   string name                = 1;
+  // Type of activity. For example - Run, Ride etc.
   optional string type       = 2;
+  // Sport type of activity. For example - Run, MountainBikeRide, Ride, etc.
   string sport_type          = 3;
+  // ISO 8601 formatted date time.
   string start_date_local    = 4;
+  // In seconds.
   int64 elapsed_time         = 5;
+  // Description of the activity.
   optional string description = 6;
+  // In meters.
   optional float distance    = 7;
+  // Set to 1 to mark as a trainer activity.
   optional int64 trainer     = 8;
+  // Set to 1 to mark as commute.
   optional int64 commute     = 9;
 }
 
 // Upload Activity
 message CreateUploadRequest {
+  // The uploaded file.
   optional bytes file                           = 1;
+  // The desired name of the resulting activity.
   optional string name                          = 2;
+  // The desired description of the resulting activity.
   optional string description                   = 3;
+  // Whether the resulting activity should be marked as having been performed on a
+  // trainer.
   optional string trainer                       = 4;
+  // Whether the resulting activity should be tagged as a commute.
   optional string commute                       = 5;
+  // The format of the uploaded file.
   optional CreateUploadRequestDataType data_type = 6;
+  // The desired external identifier of the resulting activity.
   optional string external_id                   = 7;
 }
 
@@ -1084,9 +1103,15 @@ message ExplorerSegment {
 
 // Explore segments
 message ExploreSegmentsRequest {
+  // The latitude and longitude for two points describing a rectangular boundary for the
+  // search: [southwest corner latitutde, southwest corner longitude, northeast corner
+  // latitude, northeast corner longitude]
   repeated float bounds                                    = 1;
+  // Desired activity type.
   optional ExploreSegmentsRequestActivityType activity_type = 2;
+  // The minimum climbing category.
   optional int64 min_cat                                   = 3;
+  // The maximum climbing category.
   optional int64 max_cat                                   = 4;
 }
 
@@ -1100,21 +1125,29 @@ message Fault {
 
 // Get Activity
 message GetActivityByIdRequest {
+  // The identifier of the activity.
   int64 id                         = 1;
+  // To include all segments efforts.
   optional bool include_all_efforts = 2;
 }
 
 // Get Activity Streams
 message GetActivityStreamsRequest {
+  // The identifier of the activity.
   int64 id                                   = 1;
+  // Desired stream types.
   repeated GetActivityStreamsRequestKeys keys = 2;
+  // Must be true.
   bool key_by_type                           = 3;
 }
 
 // List Club Activities
 message GetClubActivitiesByIdRequest {
+  // The identifier of the club.
   int64 id               = 1;
+  // Page number. Defaults to 1.
   optional int64 page    = 2;
+  // Number of items per page. Defaults to 30.
   optional int64 per_page = 3;
 }
 
@@ -1124,8 +1157,11 @@ message GetClubActivitiesByIdResponse {
 
 // List Club Administrators
 message GetClubAdminsByIdRequest {
+  // The identifier of the club.
   int64 id               = 1;
+  // Page number. Defaults to 1.
   optional int64 page    = 2;
+  // Number of items per page. Defaults to 30.
   optional int64 per_page = 3;
 }
 
@@ -1135,13 +1171,17 @@ message GetClubAdminsByIdResponse {
 
 // Get Club
 message GetClubByIdRequest {
+  // The identifier of the club.
   int64 id = 1;
 }
 
 // List Club Members
 message GetClubMembersByIdRequest {
+  // The identifier of the club.
   int64 id               = 1;
+  // Page number. Defaults to 1.
   optional int64 page    = 2;
+  // Number of items per page. Defaults to 30.
   optional int64 per_page = 3;
 }
 
@@ -1151,10 +1191,16 @@ message GetClubMembersByIdResponse {
 
 // List Activity Comments
 message GetCommentsByActivityIdRequest {
+  // The identifier of the activity.
   int64 id                    = 1;
+  // Deprecated. Prefer to use after_cursor.
   optional int64 page         = 2;
+  // Deprecated. Prefer to use page_size.
   optional int64 per_page     = 3;
+  // Number of items per page. Defaults to 30.
   optional int64 page_size    = 4;
+  // Cursor of the last item in the previous page of results, used to request the
+  // subsequent page of results. When omitted, the first page of results is fetched.
   optional string after_cursor = 5;
 }
 
@@ -1164,9 +1210,13 @@ message GetCommentsByActivityIdResponse {
 
 // List Segment Efforts
 message GetEffortsBySegmentIdRequest {
+  // The identifier of the segment.
   int64 segment_id                = 1;
+  // ISO 8601 formatted date time.
   optional string start_date_local = 2;
+  // ISO 8601 formatted date time.
   optional string end_date_local  = 3;
+  // Number of items per page. Defaults to 30.
   optional int64 per_page         = 4;
 }
 
@@ -1176,13 +1226,17 @@ message GetEffortsBySegmentIdResponse {
 
 // Get Equipment
 message GetGearByIdRequest {
+  // The identifier of the gear.
   string id = 1;
 }
 
 // List Activity Kudoers
 message GetKudoersByActivityIdRequest {
+  // The identifier of the activity.
   int64 id               = 1;
+  // Page number. Defaults to 1.
   optional int64 page    = 2;
+  // Number of items per page. Defaults to 30.
   optional int64 per_page = 3;
 }
 
@@ -1192,6 +1246,7 @@ message GetKudoersByActivityIdResponse {
 
 // List Activity Laps
 message GetLapsByActivityIdRequest {
+  // The identifier of the activity.
   int64 id = 1;
 }
 
@@ -1201,9 +1256,15 @@ message GetLapsByActivityIdResponse {
 
 // List Athlete Activities
 message GetLoggedInAthleteActivitiesRequest {
+  // An epoch timestamp to use for filtering activities that have taken place before a
+  // certain time.
   optional int64 before  = 1;
+  // An epoch timestamp to use for filtering activities that have taken place after a
+  // certain time.
   optional int64 after   = 2;
+  // Page number. Defaults to 1.
   optional int64 page    = 3;
+  // Number of items per page. Defaults to 30.
   optional int64 per_page = 4;
 }
 
@@ -1213,7 +1274,9 @@ message GetLoggedInAthleteActivitiesResponse {
 
 // List Athlete Clubs
 message GetLoggedInAthleteClubsRequest {
+  // Page number. Defaults to 1.
   optional int64 page    = 1;
+  // Number of items per page. Defaults to 30.
   optional int64 per_page = 2;
 }
 
@@ -1228,7 +1291,9 @@ message GetLoggedInAthleteRequest {
 
 // List Starred Segments
 message GetLoggedInAthleteStarredSegmentsRequest {
+  // Page number. Defaults to 1.
   optional int64 page    = 1;
+  // Number of items per page. Defaults to 30.
   optional int64 per_page = 2;
 }
 
@@ -1243,22 +1308,27 @@ message GetLoggedInAthleteZonesRequest {
 
 // Export Route GPX
 message GetRouteAsGPXRequest {
+  // The identifier of the route.
   int64 id = 1;
 }
 
 // Export Route TCX
 message GetRouteAsTCXRequest {
+  // The identifier of the route.
   int64 id = 1;
 }
 
 // Get Route
 message GetRouteByIdRequest {
+  // The identifier of the route.
   int64 id = 1;
 }
 
 // List Athlete Routes
 message GetRoutesByAthleteIdRequest {
+  // Page number. Defaults to 1.
   optional int64 page    = 1;
+  // Number of items per page. Defaults to 30.
   optional int64 per_page = 2;
 }
 
@@ -1268,45 +1338,57 @@ message GetRoutesByAthleteIdResponse {
 
 // Get Route Streams
 message GetRouteStreamsRequest {
+  // The identifier of the route.
   int64 id = 1;
 }
 
 // Get Segment
 message GetSegmentByIdRequest {
+  // The identifier of the segment.
   int64 id = 1;
 }
 
 // Get Segment Effort
 message GetSegmentEffortByIdRequest {
+  // The identifier of the segment effort.
   int64 id = 1;
 }
 
 // Get Segment Effort Streams
 message GetSegmentEffortStreamsRequest {
+  // The identifier of the segment effort.
   int64 id                                   = 1;
+  // The types of streams to return.
   repeated GetActivityStreamsRequestKeys keys = 2;
+  // Must be true.
   bool key_by_type                           = 3;
 }
 
 // Get Segment Streams
 message GetSegmentStreamsRequest {
+  // The identifier of the segment.
   int64 id                                  = 1;
+  // The types of streams to return.
   repeated GetSegmentStreamsRequestKeys keys = 2;
+  // Must be true.
   bool key_by_type                          = 3;
 }
 
 // Get Athlete Stats
 message GetStatsRequest {
+  // The identifier of the athlete. Must match the authenticated athlete.
   int64 id = 1;
 }
 
 // Get Upload
 message GetUploadByIdRequest {
+  // The identifier of the upload.
   int64 uploadId = 1;
 }
 
 // Get Activity Zones
 message GetZonesByActivityIdRequest {
+  // The identifier of the activity.
   int64 id = 1;
 }
 
@@ -1583,7 +1665,9 @@ message Split {
 
 // Star Segment
 message StarSegmentRequest {
+  // The identifier of the segment to star.
   int64 id    = 1;
+  // If true, star the segment; if false, unstar the segment.
   bool starred = 2;
 }
 
@@ -1899,6 +1983,7 @@ message UpdatableActivity {
 
 // Update Activity
 message UpdateActivityByIdRequest {
+  // The identifier of the activity.
   int64 id                                     = 1;
   // Whether this activity is a commute
   optional bool commute                        = 2;
@@ -1925,6 +2010,7 @@ message UpdateActivityByIdRequest {
 
 // Update Athlete
 message UpdateLoggedInAthleteRequest {
+  // The weight of the athlete in kilograms.
   float weight = 1;
 }
 
